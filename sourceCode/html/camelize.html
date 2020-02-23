@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   var camelize = cached(function(str) {
+      //     return str.replace(camelizeRE, function(_, c) {
+      //       return c ? c.toUpperCase() : "";
+      //     });
+      //   });
+      "v-for".replace(/-(\w)/g, function(_, c) {
+        console.log("_:", _); // 得到-for
+        console.log("c:", c); // 得到for
+        debugger;
+        return c ? c.toUpperCase() : ""; // 若存在c则将首字母大写
+      });
+      // 假设
+      // 'v-for'.replace(patt1,function(a,b){ return b })，
+      // 其中a接收的是'-for',b接收的是'for',
+      // 因为是replace，所以-for被替换，
+      // return b，则-for被替换为for，因此结果为vfor
+    </script>
+  </body>
+</html>

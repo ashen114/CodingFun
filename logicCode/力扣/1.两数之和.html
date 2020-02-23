@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+
+      // 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+
+      // 示例:
+
+      // 给定 nums = [2, 7, 11, 15], target = 9
+
+      // 因为 nums[0] + nums[1] = 2 + 7 = 9
+      // 所以返回 [0, 1]
+
+      // 来源：力扣（LeetCode）
+      // 链接：https://leetcode-cn.com/problems/two-sum
+      // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+      /**
+       * @param {number[]} nums
+       * @param {number} target
+       * @return {number[]}
+       */
+      /** 方法一:暴力法 */
+      //   var twoSum = function(nums, target) {
+      //     if (nums.length > 0) {
+      //       for (let i = 0; i < nums.length; i++) {
+      //         for (let j = i + 1; j < nums.length; j++) {
+      //           if ((target = nums[i] + nums[j])) {
+      //             return [i, j];
+      //           }
+      //         }
+      //       }
+      //     }
+      //   };
+      /** 方法二：两遍哈希表 */
+      //   var twoSum = function(nums, target) {
+      //     if (nums.length > 0) {
+      //       let map = new Map();
+      //       for (let i = 0; i < nums.length; i++) {
+      //         map.set(nums[i], i); // 以值为key，索引值为value
+      //       }
+      //       for (let i = 0; i < nums.length; i++) {
+      //         let complement = target - nums[i]; // 7 = 10 -3
+      //         // 存在且不等于nums[i]，即不允许自身相加
+      //         if (map.has(complement) && map.get(complement) != i) {
+      //           return [i, map.get(complement)];
+      //         }
+      //       }
+      //     }
+      //     return "数组为空";
+      //   };
+      /** 方法三：一遍哈希表 */
+      var twoSum = function(nums, target) {
+        if (nums.length > 0) {
+          let map = new Map();
+          for (let i = 0; i < nums.length; i++) {
+            let complement = target - nums[i];
+            if (map.has(complement)) {
+              return [map.get(complement), i];
+            }
+            map.set(nums[i], i);
+          }
+        }
+        return "数组为空";
+      };
+      console.log(twoSum([3, 3, 3, 4, 8, 2], 6));
+    </script>
+  </body>
+</html>

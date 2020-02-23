@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <img id="imgSrc" src="" alt="" srcset="" />
+    </div>
+    <script>
+      let str =
+        "图片地址:https://mmbiz.qpic.cn/mmbiz_jpg/6J0a6CY69PR9laV6NhlFatUOxNqV3ePNPtHCmibHxBJsjMyJEiaBxibBSIYdjjgMVXBZUYnwEXrmJRQ69wcXBxoXA/640?wx_fmt=jpeg;";
+      let outImgReg = /图片地址(:|：)http(s?):[\w-/?_:.=]*(gif|jpeg|jpg|png)(;|；)/gim;
+      str.replace(outImgReg, function(all, text, endTag) {
+        let inReg = /https:[\w-/?_:.=]*(gif|jpeg|jpg|png)/gim;
+        return all.replace(inReg, function(all, text, endTag) {
+          // let img = `<img src="${all}" />`;
+          // return (str = img);
+          let imgSrc = document.getElementById("imgSrc");
+          return (imgSrc.src = all);
+        });
+      });
+      console.log(str);
+    </script>
+  </body>
+</html>

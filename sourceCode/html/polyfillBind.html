@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @function 改变函数的this指向，作用类似于bind
+       * @param {*} fn 需要处理this指向的原函数
+       * @param {*} ctx
+       */
+      function polyfillBind(fn, ctx) {
+        function boundFn(a) {
+          // 参数长度
+          var l = arguments.length;
+          // 若存在参数，且参数长度大于则使用apply，否则使用call
+          // 若不存在参数，则使用call
+          return l
+            ? l > 1
+              ? fn.apply(ctx, arguments) // 若参数长度大于1，让arguments作为fn的参数。并返回fn
+              : fn.call(ctx, a) // 若参数长度不大于1，则
+            : fn.call(ctx); // 若没有参数，则直接返回fn
+        }
+
+        boundFn._length = fn.length;
+        return boundFn;
+      }
+
+      /** 使用bind改变this指向 */
+      function nativeBind(fn, ctx) {
+        return fn.bind(ctx);
+      }
+
+      /**
+       * @function 使用bind改变this指向，若环境支持bind则使用nativeBind，否则使用polyfillBind
+       * @param fn 需要改变this指向的函数
+       * @param ctx
+       *  */
+      var bind = Function.prototype.bind ? nativeBind : polyfillBind;
+
+      let a = function(t) {
+        console.log(t);
+      };
+      console.log(bind);
+    </script>
+  </body>
+</html>
