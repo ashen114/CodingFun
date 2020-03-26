@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @function
+       * @params list 需要转换的数组
+       * @params start 需要转换的开始位置，默认从0开始
+       */
+      function toArray(list, start) {
+        start = start || 0;
+        var i = list.length - start;
+        var ret = new Array(i);
+        while (i--) {
+          ret[i] = list[i + start];
+        }
+        return ret;
+      }
+      let arr = [
+        { name: "1" },
+        {
+          name: function() {
+            console.log("test-2");
+          }
+        },
+        { name: ["1", "2", "3"] },
+        {
+          class: class Test {}
+        }
+      ];
+      console.log(toArray(arr, 1)); // 得到[{ name: "2" }, { name: "3" }];
+    </script>
+  </body>
+</html>

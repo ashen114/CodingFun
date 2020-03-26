@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function cached(fn) {
+        var cache = Object.create(null); // 创建空对象
+        return function cachedFn(str) {
+          // 函数，接收fn中的str参数
+          debugger;
+          let hit = cache[str]; // 将fn中的str参数....?
+          debugger;
+
+          return hit || (cache[str] = fn(str)); // 若hit没有str属性和值，则赋予fn的返回数据作为值
+        };
+      }
+
+      var capitalize = cached(function(str) {
+        debugger;
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      });
+
+      var a = capitalize("ahen"); // 调用了capitalize，capitalize实际存储起来的是cachedFn，因此，下次此时var capitalize = function cachedFn(str) {let hit = cache[str]; return hit || (cache[str] = fn(str)); };
+
+      var b = capitalize("ahen"); // 由于上述capitalize实际是已经缓存起来了cachedFn，而且由于闭包的原因，cache实际上自从第一次被创建后，每次调用都会被str覆盖，除非上次的结果等于本次的属性。
+
+      var c = capitalize("ahen1");
+
+      var d = capitalize("ahen2");
+
+      var e = capitalize("ahen");
+    </script>
+  </body>
+</html>
