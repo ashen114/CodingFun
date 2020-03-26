@@ -21,10 +21,11 @@ allEqual([1, 1, 1, 1]); // true
 ```
 3. approximatelyEqual
 此代码示例检查两个数字是否近似相等，差异值可以通过传参的形式进行设置
-
+```js
 const approximatelyEqual = (v1, v2, epsilon = 0.001) => Math.abs(v1 - v2) < epsilon;
 
 approximatelyEqual(Math.PI / 2.0, 1.5708); // true
+```
 4. arrayToCSV
 此段代码将没有逗号或双引号的元素转换成带有逗号分隔符的字符串即CSV格式识别的形式。
 
