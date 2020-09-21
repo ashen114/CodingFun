@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{ person.name }} -- {{ person.age }}</h2>
+        <h3>{{ person.fav }}</h3>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <h3>{{ msg }}</h3>
+        <div v-text="person.name"></div>
+        <div class="test" v-text="msg"></div>
+        <div v-html="htmlStr"></div>
+        <input type="text" v-model="msg">
+        <button v-on:click="handleClick">v-on</button>
+        <button @click="handleClick">@</button>
+        <img v-bind:src="imgUrl" alt="" srcset="">
+        <img :src="imgUrl" alt="" srcset="">
+    </div>
+
+    <!-- <script src="../vue.js"></script> -->
+    <script src="my-vue.js"></script>
+    <script>
+        let vm = new MVue({
+            el: '#app',
+            data: {
+                person: {
+                    name: '用户名',
+                    age: 24,
+                    fav: '爱好'
+                },
+                msg: '文本内容',
+                htmlStr: '<a href="#">测试html标签链接</a>',
+                imgUrl: 'https://avatars3.githubusercontent.com/u/28629247?s=460&u=08de192528ad87179b2219fe0b9f248b1f452d63&v=4'
+            },
+            methods: {
+                handleClick() {
+                    console.log('handleClick-this:', this);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
